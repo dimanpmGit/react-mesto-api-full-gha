@@ -1,0 +1,30 @@
+.popup {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .5s linear, opacity .5s linear;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, .5);
+}
+
+@media screen and (max-width: 520px) {
+  .popup {
+    max-width: 100vw;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popup {
+    max-width: 320px;
+  }
+}

@@ -1,0 +1,14 @@
+.header__nav-link {
+  text-decoration: none;
+  color: #A9A9A9;
+  padding: 0;
+  margin: 0 0 0 24px;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.header__nav-link:last-of-type {
+  margin-right: 0;
+}

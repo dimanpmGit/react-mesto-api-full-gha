@@ -1,0 +1,8 @@
+.card__info {
+  margin: 23px 20px 16px;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 246px;
+}
