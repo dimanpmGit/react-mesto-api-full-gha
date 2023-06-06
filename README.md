@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.23.140
+IP-адрес 158.160.5.198
 
 Frontend https://mesto.dimanpm.nomoredomains.rocks
 
