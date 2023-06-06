@@ -7,6 +7,7 @@
 Адрес репозитория: https://github.com/dimanpmGit/react-mesto-api-full-gha
 
 ## Ссылки на проект
+vjlbabwbhjdfy
 
 IP 158.160.5.198
 
