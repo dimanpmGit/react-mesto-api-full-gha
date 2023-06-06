@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../utils/jwt');
+require('dotenv').config();
+
+const { JWT_SECRET } = process.env;
 const NotFoundError = require('../errors/not-found-err');
 const AuthError = require('../errors/auth-err');
 const ConflictError = require('../errors/conflict-err');
