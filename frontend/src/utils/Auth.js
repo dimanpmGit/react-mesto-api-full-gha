@@ -44,7 +44,7 @@ class Auth {
   };
 }
 
-const BASE_URL = 'http://localhost:3001';//'mesto.dimanpm.nomoredomains.rocks';//'https://auth.nomoreparties.co';
+const BASE_URL = 'https://api.mesto.dimanpm.nomoredomains.rocks';
 const auth = new Auth();
 
 export default  auth;

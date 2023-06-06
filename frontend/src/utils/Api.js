@@ -100,9 +100,9 @@ class Api {
 
 // Конфиг для подключения к серверу
 const config = {
-  url: 'http://localhost:3001',//'api.mesto.dimanpm.nomoredomains.rocks',//'https://mesto.nomoreparties.co/v1/cohort-60',
+  url: 'https://api.mesto.dimanpm.nomoredomains.rocks',
   headers: {
-    authorization: `Bearer ${localStorage.getItem('token')}`,//'795d4992-334e-420a-88f5-63bf4e3c7168',
+    authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
   }
 }

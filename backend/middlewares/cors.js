@@ -4,10 +4,10 @@ const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 const allowedCors = [
   'https://mesto.dimanpm.nomoredomains.rocks',
   'http://mesto.dimanpm.nomoredomains.rocks',
+  'https://api.mesto.dimanpm.nomoredomains.rocks',
+  'http://api.mesto.dimanpm.nomoredomains.rocks',
   'http://localhost:3000',
-  'http://localhost:3001',
   'http://127.0.0.1:3000',
-  'http://127.0.0.1:3001',
 ];
 
 // eslint-disable-next-line consistent-return
