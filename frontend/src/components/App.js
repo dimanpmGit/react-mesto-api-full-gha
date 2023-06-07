@@ -47,7 +47,7 @@ export function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  function handleLogin(user, token) {
+  function handleLogin(user) {
     setLoggedIn(true);
     setFormValues(user);
   }
@@ -188,7 +188,7 @@ export function App() {
     }
     auth.getContent(token)
       .then(res => {
-        handleLogin(res, token);
+        handleLogin(res);
         const url = location.state?.returnUrl || '/main';
         navigate(url);
       })
@@ -215,6 +215,10 @@ export function App() {
       .catch(err => console.log(err));
   }
 
+  function handleSignOut() {
+    setLoggedIn(false);
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -227,7 +231,7 @@ export function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className="page__container">
-          <Header email={formValues ? formValues.email : ''} />
+          <Header email={formValues ? formValues.email : ''} handleSignOut={handleSignOut}/>
             <Routes>
               <Route path="/signin" element={<Login handleChange={handleChange} handleSubmit={handleLoginSubmit} formValues={formValues} />} />
               <Route path="/signup" element={<Register handleChange={handleChange} handleSubmit={handleRegisterSubmit} formValues={formValues} />} />
