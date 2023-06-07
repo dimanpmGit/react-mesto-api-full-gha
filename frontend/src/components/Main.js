@@ -24,7 +24,7 @@ function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onC
       </section>
       <section className="cards">
         <ul className="cards__list">
-          {cards.reverse().map((item) => (
+          {cards.map((item) => (
             <Card key={item._id} card={item} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
           ))}
         </ul>
