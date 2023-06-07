@@ -24,6 +24,7 @@ const cardSchema = new mongoose.Schema(
     },
     likes: {
       type: [mongoose.ObjectId],
+      ref: 'user',
       default: [],
     },
     createdAt: {

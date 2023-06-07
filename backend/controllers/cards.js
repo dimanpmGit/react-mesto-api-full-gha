@@ -4,7 +4,7 @@ const NotFoundError = require('../errors/not-found-err');
 const NotCardOwnerError = require('../errors/not-card-owner-err');
 
 const getAllCards = (req, res, next) => {
-  Card.find({})
+  Card.find({}).sort({ createdAt: -1 })
     .then((card) => res.send(card))
     .catch(next);
 };
@@ -23,10 +23,11 @@ const deleteCard = (req, res, next) => {
       if (!card) {
         next(new NotFoundError('Карточка не найдена'));
       }
-      if (card.owner.toString() !== req.user._id) {
+      else if (card.owner.toString() !== req.user._id) {
         next(new NotCardOwnerError('Удалить карточку может только владелец'));
+      } else {
+        return Card.findByIdAndRemove(req.params.id);
       }
-      return Card.findByIdAndRemove(req.params.id);
     })
     .then(() => res.send({ message: 'Карточка удалена' }))
     .catch(next);
@@ -36,7 +37,7 @@ const likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.id,
     { $addToSet: { likes: req.user._id } },
-    { new: true, runValidators: true },
+    { new: true },
   )
     .then((card) => {
       if (!card) {

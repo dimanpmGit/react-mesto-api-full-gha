@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -31,10 +32,8 @@ const limiter = rateLimit({
 
 app.use(cors);
 app.use(bodyParser.json());
-app.use(limiter);
-
 app.use(requestLogger); // подключаем логгер запросов
-
+app.use(limiter);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
