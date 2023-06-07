@@ -4,8 +4,11 @@ const NotFoundError = require('../errors/not-found-err');
 const NotCardOwnerError = require('../errors/not-card-owner-err');
 
 const getAllCards = (req, res, next) => {
-  Card.find({}).sort({ createdAt: -1 })
-    .then((card) => res.send(card))
+  Card.find({}).sort({ createdAt: 1 })
+    .then((card) => {
+      console.log(card);
+      return res.send(card);
+    })
     .catch(next);
 };
 
