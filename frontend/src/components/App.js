@@ -46,8 +46,8 @@ export function App() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  
-  function handleLogin(user) {
+
+  function handleLogin(user, token) {
     setLoggedIn(true);
     setFormValues(user);
   }
@@ -68,7 +68,7 @@ export function App() {
     .catch((err) => {
       console.log(err);
     });
-  }, []);
+  }, [loggedIn]);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -181,6 +181,20 @@ export function App() {
       })
   }
 
+  function tokenCheck() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return;
+    }
+    auth.getContent(token)
+      .then(res => {
+        handleLogin(res, token);
+        const url = location.state?.returnUrl || '/main';
+        navigate(url);
+      })
+      .catch(err => console.log(err));
+  }
+
   function handleLoginSubmit(e) {
     e.preventDefault();
 
@@ -193,24 +207,10 @@ export function App() {
       .then(data => {
         if (data.token) {
           localStorage.setItem('token', data.token);
-          tokenCheck(data.token);
+          tokenCheck();
           const url = location.state?.returnUrl || '/main';
           navigate(url);
         }
-      })
-      .catch(err => console.log(err));
-  }
-
-  function tokenCheck() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      return;
-    }
-    auth.getContent(token)
-      .then(res => {
-        handleLogin(res);
-        const url = location.state?.returnUrl || '/main';
-        navigate(url);
       })
       .catch(err => console.log(err));
   }

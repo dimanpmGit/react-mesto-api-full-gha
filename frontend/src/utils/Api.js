@@ -6,16 +6,18 @@ const handleResponse = (res) => {
 }
 
 class Api {
-  constructor(config) {
+  constructor() {
     this.url = config.url;
     this.urlForCards = `${this.url}/cards`;
     this.urlForUser = `${this.url}/users/me`;
-    this.headers = config.headers;
   }
 
   getUserInfo() {
     return fetch(this.urlForUser, {
-      headers: this.headers
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
     })
       .then(handleResponse)
   }
@@ -25,7 +27,10 @@ class Api {
       this.urlForUser,
       {
         method: 'PATCH',
-        headers: this.headers,
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
       }
     )
@@ -34,7 +39,10 @@ class Api {
 
   getCardsData() {
     return fetch(this.urlForCards, {
-      headers: this.headers
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
     })
       .then(handleResponse)
   }
@@ -42,7 +50,10 @@ class Api {
   createCard(data) {
     return fetch(this.urlForCards, {
       method: 'POST',
-      headers: this.headers,
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
     })
       .then(handleResponse)
@@ -51,7 +62,10 @@ class Api {
   deleteCard(id) {
     return fetch(`${this.urlForCards}/${id}`, {
       method: 'DELETE',
-      headers: this.headers
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
     })
       .then(handleResponse)
   }
@@ -59,7 +73,10 @@ class Api {
   likeCard(id) {
     return fetch(`${this.urlForCards}/${id}/likes`, {
       method: 'PUT',
-      headers: this.headers
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
     })
       .then(handleResponse)
   }
@@ -67,7 +84,10 @@ class Api {
   unlikeCard(id) {
     return fetch(`${this.urlForCards}/${id}/likes`, {
       method: 'DELETE',
-      headers: this.headers
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
     })
       .then(handleResponse)
   }
@@ -76,13 +96,19 @@ class Api {
     if (isLiked) {
       return fetch(`${this.urlForCards}/${id}/likes`, {
         method: 'PUT',
-        headers: this.headers
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        }
       })
         .then(handleResponse)
     }
     return fetch(`${this.urlForCards}/${id}/likes`, {
       method: 'DELETE',
-      headers: this.headers
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      }
     })
       .then(handleResponse)
   }
@@ -91,7 +117,10 @@ class Api {
     return fetch(`${this.urlForUser}/avatar`,
       {
         method: 'PATCH',
-        headers: this.headers,
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data)
       })
       .then(handleResponse)
@@ -100,11 +129,7 @@ class Api {
 
 // Конфиг для подключения к серверу
 const config = {
-  url: 'https://api.mesto.dimanpm.nomoredomains.rocks',
-  headers: {
-    authorization: `Bearer ${localStorage.getItem('token')}`,
-    'Content-Type': 'application/json'
-  }
+  url: 'https://api.mesto.dimanpm.nomoredomains.rocks'
 }
 
 const api = new Api(config);
