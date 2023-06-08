@@ -30,7 +30,7 @@ const limiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-//app.use(cors);
+app.use(cors);
 app.use(bodyParser.json());
 app.use(requestLogger); // подключаем логгер запросов
 app.use(limiter);
