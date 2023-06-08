@@ -1,5 +1,6 @@
 // app.js — входной файл
 const express = require('express');
+const { cors } = require('./middlewares/cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -18,7 +19,6 @@ const {
   signinValidation,
 } = require('./middlewares/validations');
 const NotFoundError = require('./errors/not-found-err');
-const { cors } = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 const app = express();
