@@ -6,10 +6,7 @@ const allowedCors = [
   'http://mesto.dimanpm.nomoredomains.rocks',
   'https://api.mesto.dimanpm.nomoredomains.rocks',
   'http://api.mesto.dimanpm.nomoredomains.rocks',
-  'http://localhost:3000',
-  'http://127.0.0.1:3000',
-  'https://localhost:3000',
-  'https://127.0.0.1:3000',
+  'http://localhost:3000'
 ];
 
 // eslint-disable-next-line consistent-return
