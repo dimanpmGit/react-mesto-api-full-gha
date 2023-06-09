@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 const NotFoundError = require('../errors/not-found-err');
 const AuthError = require('../errors/auth-err');
@@ -55,8 +56,9 @@ const createUser = (req, res, next) => {
         next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
       } else if (err.name === 'ValidationError') {
         next(new ValidationError('Переданы некорректные данные в методы пользователя'));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 

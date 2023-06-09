@@ -1,11 +1,11 @@
 // app.js — входной файл
 const express = require('express');
-const { cors } = require('./middlewares/cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const { errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
+const { cors } = require('./middlewares/cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const usersRouter = require('./routes/users');
 const {
